@@ -1,0 +1,35 @@
+query PageQuery ($page: Int, $perPage: Int, $season: MediaSeason, $seasonYear: Int) {
+    page: Page(page: $page, perPage: $perPage){
+        media(season: $season, seasonYear: $seasonYear) {
+            coverImage {
+                color,
+                extraLarge,
+                large,
+                medium
+            }
+            autoCreateForumThread,
+            averageScore,
+            bannerImage,
+            chapters,
+            description(asHtml: true),
+            duration,
+            episodes,
+            genres,
+            id,
+            idMal,
+            isAdult,
+            popularity,
+            title {
+                english,
+                native,
+                romaji
+            }
+            seasonYear,
+            trailer {
+                id,
+                site,
+                thumbnail
+            }
+        }
+    }
+}
