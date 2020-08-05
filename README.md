@@ -1,4 +1,5 @@
 # AnimeLibrary
+Aplicativo em desenvolvimento.
 
 Aplicativo utiliza as tecnologias do Android Architecture Components e os padrões de arquitetura, Clean Architecture e MVVM.
 <ul>
