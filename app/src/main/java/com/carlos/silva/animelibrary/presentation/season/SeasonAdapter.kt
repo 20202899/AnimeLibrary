@@ -22,11 +22,6 @@ class SeasonAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val animes = mutableListOf<Anime>()
 
-    private val colors = intArrayOf(
-        R.color.colorPrimaryDark,
-        R.color.colorPrimary
-    )
-
     lateinit var onClickListener: (Anime) -> Unit
 
     fun addAnimes(animes: List<Anime>) {
