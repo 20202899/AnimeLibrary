@@ -9,7 +9,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.carlos.silva.animelibrary.R
@@ -64,7 +63,7 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         )
 
         seasonViewModel.seasonLiveData.observe(viewLifecycleOwner, Observer {
-            adapter.addAnimes(it.anime)
+            adapter.refresh(it.anime)
             refresh.isRefreshing = false
             recyclerviewAnim()
         })
