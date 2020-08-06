@@ -86,7 +86,7 @@ class SeasonAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(anime: Anime) {
             val color = Color.parseColor(anime.conceitualColor)
             layerView.setBackgroundColor(color)
-            layerView.alpha = 0.9f
+            layerView.alpha = 0.85f
             textView.text = anime.title
 
             Glide.with(itemView.context)

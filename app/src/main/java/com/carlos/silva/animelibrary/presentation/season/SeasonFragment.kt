@@ -72,6 +72,10 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         })
 
+        fab.setOnClickListener {
+            //motion.transitionToEnd()
+        }
+
         seasonViewModel.getSeason()
     }
 
