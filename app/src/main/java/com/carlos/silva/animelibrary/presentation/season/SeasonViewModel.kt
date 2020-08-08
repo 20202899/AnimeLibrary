@@ -17,8 +17,17 @@ class SeasonViewModel(
 
     val seasonLiveData = MutableLiveData<Season>()
     val animeLiveData = MutableLiveData<Anime>()
+    val motionStatus = MutableLiveData<SeasonFragment.MotionStatus>(
+        SeasonFragment.MotionStatus.MOTION_DEFAULT
+    )
 
     fun getSeason() = viewModelScope.launch {
         seasonLiveData.value = async { interactors.getAnimeSeason() }.await()
     }
+
+    fun setOnMotionStatus(status: SeasonFragment.MotionStatus)  {
+        motionStatus.value = status
+    }
+
+    fun getCurrentStatus() = motionStatus.value
 }

@@ -7,9 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BottomShape" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="FabMoreShape" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
+        <item name="cornerSize">30dp</item>
     </style>
 
 </resources>

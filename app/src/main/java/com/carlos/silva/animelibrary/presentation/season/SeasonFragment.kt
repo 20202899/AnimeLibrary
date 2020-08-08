@@ -1,11 +1,16 @@
 package com.carlos.silva.animelibrary.presentation.season
 
 import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.OvershootInterpolator
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +29,14 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
+    private var isCollapsed = false
+
+    enum class MotionStatus {
+        MOTION_DEFAULT,
+        MOTION_COLLAPSE,
+        MOTION_FULL
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,6 +51,9 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        fabAnim()
+
         with(recyclerview) {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(
@@ -68,12 +84,12 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             recyclerviewAnim()
         })
 
-        seasonViewModel.animeLiveData.observe(viewLifecycleOwner, Observer {
+        seasonViewModel.motionStatus.observe(viewLifecycleOwner, Observer {
 
         })
 
         fab.setOnClickListener {
-            //motion.transitionToEnd()
+            motion.transitionToEnd()
         }
 
         seasonViewModel.getSeason()
@@ -92,6 +108,15 @@ class SeasonFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         objectAnimator.start()
 
+    }
+
+    private fun fabAnim() {
+        val scaleX = PropertyValuesHolder.ofFloat("scaleX", 0f, 1f)
+        val scaleY = PropertyValuesHolder.ofFloat("scaleY", 0f, 1f)
+        val objectAnimator = ObjectAnimator.ofPropertyValuesHolder(fab, scaleX, scaleY)
+        objectAnimator.interpolator = OvershootInterpolator()
+        objectAnimator.duration = 300
+        objectAnimator.start()
     }
 
     override fun onRefresh() {
